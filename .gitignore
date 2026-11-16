@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.py[codz]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.envrc
+.venv/
+env/
+venv/
+
+# Generated data and figures (keep .gitkeep)
+data/*.csv
+data/*.xlsx
+notebooks/figures/*.png
+!data/.gitkeep
