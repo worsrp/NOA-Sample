@@ -108,39 +108,3 @@ public-portfolio-showcase/
 └── data/
     └── .gitkeep                                  # Target directory for generated synthetic CSVs
 ```
-
----
-
-## 5. Quickstart & Step-by-Step Execution
-
-### Step 1: Install Dependencies
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-### Step 2: Generate Synthetic Data
-Run `generate_synthetic_data.py` to populate `data/` with realistic 200-row synthetic datasets (including timestamp conflicts, 1-slot unknown gaps, unknown receiver edge cases, and multi-tier staff schedules):
-```bash
-python3 generate_synthetic_data.py --seed 42 --num-rows 200
-```
-
-### Step 3: Run the 3-Stage BLE Preprocessing Pipeline
-All scripts automatically load default file paths and parameters from `config.yaml` (or `.env`), and also accept explicit CLI flags:
-```bash
-# Stage 1: Interpolate raw BLE logs onto 30s shift grids
-python3 src/beacon_interpolation.py
-
-# Stage 2: Resolve multi-beacon timestamp conflicts and fill short unknown gaps
-python3 src/beacon_cleaning.py
-
-# Stage 3: Compute hourly nursing workflow & mobility features
-python3 src/hourly_workload_features_processing.py --output data/03_pipeline_hourly_features.csv
-```
-
-### Step 4: Run the Analysis Notebooks
-Execute the notebooks in sequence (`01` $\rightarrow$ `06`) via Jupyter Lab/Notebook or programmatically:
-```bash
-jupyter lab notebooks/
-```
